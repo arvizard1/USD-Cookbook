@@ -5,13 +5,13 @@ link_directories(${USD_LIBRARY_DIR})
 
 
 set(
-	SRC
-		resolver.cpp
+        SRC
+                resolver.cpp
 )
 
 add_library(${PLUGIN_NAME}
     SHARED
-		${SRC}
+                ${SRC}
 )
 
 find_package(PythonLibs REQUIRED)
@@ -19,30 +19,31 @@ find_package(PythonLibs REQUIRED)
 target_link_libraries(${PLUGIN_NAME}
     PUBLIC
 
-		libboost_python.so
-		libar.so
+                libboost_python.so
+                libpxr_ar.so
 )
 
 target_include_directories(
-	${PLUGIN_NAME}
-		SYSTEM
-			PRIVATE
-				${USD_INCLUDE_DIR}
+        ${PLUGIN_NAME}
+                SYSTEM
+                        PRIVATE
+                                ${USD_INCLUDE_DIR}
 
-			PUBLIC
-				${PYTHON_INCLUDE_PATH}
+                        PUBLIC
+                                ${PYTHON_INCLUDE_PATH}
 )
 
 install(
     TARGETS
         ${PLUGIN_NAME}
-	DESTINATION
-		.
+        DESTINATION
+                .
 )
 
 install(
     FILES
-		plugInfo.json
+                plugInfo.json
     DESTINATION
         ./resources
 )
+    

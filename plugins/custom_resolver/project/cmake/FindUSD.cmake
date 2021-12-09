@@ -1,5 +1,3 @@
-# Simple module to find USD.
-
 if (EXISTS "$ENV{USD_INSTALL_ROOT}")
     set(USD_INSTALL_ROOT $ENV{USD_INSTALL_ROOT})
 endif ()
@@ -8,13 +6,13 @@ find_path(USD_INCLUDE_DIR pxr/pxr.h
           PATHS ${USD_INSTALL_ROOT}/include
           DOC "USD Include directory")
 
-find_path(USD_LIBRARY_DIR libusd.so
-          PATHS ${USD_INSTALL_ROOT}/lib
+find_path(USD_LIBRARY_DIR libHoudiniUSD.so
+          PATHS $ENV{HOUDINI_ROOT}/dsolib
           DOC "USD Libraries directory")
 
 find_file(USD_GENSCHEMA
           names usdGenSchema
-          PATHS ${USD_INSTALL_ROOT}/bin
+          PATHS ${HOUDINI_ROOT}/bin
           DOC "USD Gen schema application")
 
 if(USD_INCLUDE_DIR AND EXISTS "${USD_INCLUDE_DIR}/pxr/pxr.h")
@@ -38,3 +36,4 @@ find_package_handle_standard_args(
     USD_GENSCHEMA
     VERSION_VAR
     USD_VERSION)
+    
